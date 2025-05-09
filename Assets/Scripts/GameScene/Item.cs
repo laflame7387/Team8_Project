@@ -28,7 +28,7 @@ public class Item : MonoBehaviour
                 {
                     case ItemType.Score:
                         Debug.Log($"{amount}¡° »πµÊ.");
-                        player.AddScore(amount);
+                        ScoreManager.Instance.AddScore(amount);
                         break;
                     case ItemType.SpeedUp:
                         Debug.Log($"º”µµ {amount} ¡ı∞°");

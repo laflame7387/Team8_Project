@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private const float MinMoveSpeed = 1.0f; // 최소 속도
     [SerializeField] private int health = 100; // 현재 체력
     [SerializeField] private const int MaxHealth = 100; // 최대 체력
-    [SerializeField] private int score = 0; // 점수
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
     private bool IsGrounded = false; // Ground 상태 확인 변수
@@ -68,11 +67,6 @@ public class PlayerController : MonoBehaviour
                 IsJumping = false;
             }
         }
-    }
-    public void AddScore(int amount)
-    {
-        score += amount;
-        Debug.Log($"점수 증가, 현재 점수 : {score}");
     }
 
     public void IncreaseSpeed(float amount)
