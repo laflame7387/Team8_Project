@@ -61,11 +61,11 @@ public class PlayerController : MonoBehaviour
             }
 
             // Z키를 떼면 점프 실행
-            if (Input.GetKeyUp(KeyCode.Z) && IsCrouching)
+            if (Input.GetKeyUp(KeyCode.Z) && IsJumping)
             {
                 PerformJump();
                 holdTime = 0f; // 홀드 시간 초기화
-                IsCrouching = false;
+                IsJumping = false;
             }
             // 슬라이딩 입력 처리
             if (Input.GetKey(KeyCode.X) && !IsCrouching)
