@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedIncreaseAmount = 1f; // 트리거로 증가할 이동 속도
     [SerializeField] private CapsuleCollider2D normalCollider; // 기본 콜라이더
     [SerializeField] private CapsuleCollider2D slideCollider; // 슬라이딩용 콜라이더
+    [SerializeField] private int maxHealth = 3;
+
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
     private bool IsGrounded = false; // Ground 상태 확인 변수
@@ -21,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool IsDamaged = false; // 데미지 상태 확인 변수
     private bool IsDie = false; // 사망 상태 확인 변수
     private bool IsCrouching = false; // 슬라이딩 상태 여부
-
+    private int currentHealth;
     public bool Grounded => IsGrounded; // IsGrounded 프로퍼티
     public bool Damaged => IsDamaged; // IsDamaged 프로퍼티
     public bool Die => IsDie; // IsDie 프로퍼티
@@ -29,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D is not attached to the player!");
@@ -67,6 +71,7 @@ public class PlayerController : MonoBehaviour
                 holdTime = 0f; // 홀드 시간 초기화
                 IsJumping = false;
             }
+
             // 슬라이딩 입력 처리
             if (Input.GetKey(KeyCode.X) && !IsCrouching)
             {
@@ -107,7 +112,31 @@ public class PlayerController : MonoBehaviour
             playerAnimator.Play("Jump P1 (Start)");
         }
     }
+    private IEnumerator HandleDamage()
+    {
+        IsDamaged = true;
+        float originalMoveSpeed = moveSpeed;
 
+        playerAnimator.SetBool("IsDamaged", true);
+        moveSpeed = -5f;
+
+        currentHealth--; // 체력 감소
+
+        // 1초 대기
+        yield return new WaitForSeconds(1f);
+
+        // 체력 또는 낙사 체크
+        if (CheckDeathCondition())
+        {
+            HandleDeath();
+        }
+        else
+        {
+            IsDamaged = false;
+            playerAnimator.SetBool("IsDamaged", false);
+            moveSpeed = originalMoveSpeed;
+        }
+    }
     private void StartSlide()
     {
         IsCrouching = true;
@@ -157,38 +186,18 @@ public class PlayerController : MonoBehaviour
             IsGrounded = false;
         }
     }
-
-    private IEnumerator HandleDamage()
-    {
-        IsDamaged = true;
-        float originalMoveSpeed = moveSpeed;
-
-        // 애니메이터에 IsDamaged 전달
-        playerAnimator.SetBool("IsDamaged", true);
-
-        // 속도를 -5로 설정
-        moveSpeed = -5f;
-
-        // 1초 대기
-        yield return new WaitForSeconds(1f);
-
-        // 사망 판정
-        if (CheckDeathCondition())
-        {
-            IsDie = true;
-        }
-        else
-        {
-            IsDamaged = false;
-            playerAnimator.SetBool("IsDamaged", false); // 애니메이터에 IsDamaged 전달
-            moveSpeed = originalMoveSpeed; // 속도 복구
-        }
-    }
-
     private bool CheckDeathCondition()
     {
-        // 사망 조건을 확인하는 메서드 (현재는 항상 false 반환)
-        // 실제 게임 로직에 따라 수정 필요
+        if (transform.position.y < -10f) // 낙사
+        {
+            return true;
+        }
+
+        if (currentHealth <= 0) // 체력 고갈
+        {
+            return true;
+        }
+
         return false;
     }
 
@@ -207,5 +216,15 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("IsDamaged", IsDamaged);
             playerAnimator.SetBool("IsDie", IsDie);
         }
+    }
+
+    private void HandleDeath()
+    {
+        IsDie = true;
+        playerAnimator.SetBool("IsDie", true);
+        rb.velocity = Vector2.zero;
+
+        // 필요 시: 게임 오버 UI 호출, 재시작 버튼 활성화 등
+        Debug.Log("플레이어가 사망했습니다.");
     }
 }
