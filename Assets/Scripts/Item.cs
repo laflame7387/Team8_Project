@@ -27,20 +27,20 @@ public class Item : MonoBehaviour
                 switch (itemType)
                 {
                     case ItemType.Score:
-                        player.AddScore(amount);
                         Debug.Log($"{amount}점 획득.");
+                        player.AddScore(amount);
                         break;
                     case ItemType.SpeedUp:
-                        player.IncreaseSpeed(amount);
                         Debug.Log($"속도 {amount} 증가");
+                        player.IncreaseSpeed(amount);
                         break;
                     case ItemType.SpeedDown:
-                        player.DecreaseSpeed(amount);
                         Debug.Log($"속도 {amount} 감소");
+                        player.DecreaseSpeed(amount);
                         break;
                     case ItemType.Heal:
-                        player.Heal(amount);
                         Debug.Log($"체력 {amount} 회복");
+                        player.Heal(amount);
                         break;
                 }
             }

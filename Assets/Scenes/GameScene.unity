@@ -418,7 +418,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4731419868743469064, guid: beb44e708c4e9174287ff6a22f7ac66d, type: 3}
       propertyPath: m_Name
-      value: SpeedDownItem
+      value: SpeedDownItem1
       objectReference: {fileID: 0}
     - target: {fileID: 5236667060375195702, guid: beb44e708c4e9174287ff6a22f7ac66d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -465,6 +465,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beb44e708c4e9174287ff6a22f7ac66d, type: 3}
+--- !u!1001 &2979596048131088258
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248673413791049702, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6037418197231930309, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_Name
+      value: ScoreItem2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
 --- !u!1001 &5625944225322826996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -475,7 +532,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6153478187663839300, guid: e0ed5c831e4b8ce47adef51da44ec778, type: 3}
       propertyPath: m_Name
-      value: ScoreItem
+      value: ScoreItem1
       objectReference: {fileID: 0}
     - target: {fileID: 8134998804988916219, guid: e0ed5c831e4b8ce47adef51da44ec778, type: 3}
       propertyPath: m_LocalPosition.x
@@ -517,10 +574,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8918359949025075747, guid: e0ed5c831e4b8ce47adef51da44ec778, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -536,7 +589,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 75015116872768110, guid: 5ce1421c172dbb949b798f59062e38c5, type: 3}
       propertyPath: m_Name
-      value: SpeedUpItem
+      value: SpeedUpItem1
       objectReference: {fileID: 0}
     - target: {fileID: 3587300157601208918, guid: 5ce1421c172dbb949b798f59062e38c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -633,7 +686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4433756602561652945, guid: 04c6a6438e0ed854f9ea978b59d79283, type: 3}
       propertyPath: m_Name
-      value: HealItem
+      value: HealItem1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -646,6 +699,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1250176352}
   - {fileID: 5625944225322826996}
+  - {fileID: 2979596048131088258}
   - {fileID: 7963998271939371705}
   - {fileID: 2226810455332095663}
   - {fileID: 8826857744203367811}

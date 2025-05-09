@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8742756084297009208}
   - component: {fileID: 8803862674711097814}
   m_Layer: 0
-  m_Name: SpeedUpItem
+  m_Name: SpeedUpItem1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5308012846302989995}
   - component: {fileID: 2972788694023317500}
   m_Layer: 0
-  m_Name: SpeedUpItemSprite
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
