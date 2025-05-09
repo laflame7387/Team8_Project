@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxHoldTime = 1f; // Z키 최대 홀드 시간
     [SerializeField] private float minHoldTime = 0.2f; // Z키 최소 홀드 시간
     [SerializeField] private Animator playerAnimator; // 플레이어 애니메이터
+    [SerializeField] private const float MinMoveSpeed = 1.0f; // 최소 속도
+    [SerializeField] private int health = 100; // 현재 체력
+    [SerializeField] private const int MaxHealth = 100; // 최대 체력
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
     private bool IsGrounded = false; // Ground 상태 확인 변수
@@ -64,6 +67,26 @@ public class PlayerController : MonoBehaviour
                 IsJumping = false;
             }
         }
+    }
+
+    public void IncreaseSpeed(float amount)
+    {
+        moveSpeed += amount;
+        Debug.Log($"속도 증가, 현재 속도 : {moveSpeed}");
+    }
+
+    public void DecreaseSpeed(float amount)
+    {
+        moveSpeed -= amount;
+        if (moveSpeed < MinMoveSpeed) moveSpeed = MinMoveSpeed;
+        Debug.Log($"속도 감소, 현재 속도 : {moveSpeed}");
+    }
+
+    public void Heal(int mount)
+    {
+        health += mount;
+        if (health > MaxHealth) health = MaxHealth;
+        Debug.Log($"체력 회복, 현재 체력 : {health}");
     }
 
     private void PerformJump()
