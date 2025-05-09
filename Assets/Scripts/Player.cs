@@ -10,17 +10,18 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxHoldTime = 1f; // Z키 최대 홀드 시간
     [SerializeField] private float minHoldTime = 0.2f; // Z키 최소 홀드 시간
     [SerializeField] private Animator playerAnimator; // 플레이어 애니메이터
-    [SerializeField] private float speedIncreaseInterval = 50f; // 50 유닛마다 증가
-    [SerializeField] private float speedIncreaseAmount = 0.5f; // 얼마나 빨라질지
 
-    private float nextSpeedIncreaseDistance = 50f;
+    [SerializeField] private float speedIncreaseAmount = 1f; // 얼마나 빨라질지
+    [SerializeField] private CapsuleCollider2D normalCollider;
+    [SerializeField] private CapsuleCollider2D slideCollider;
+
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
     //private bool isGrounded = false; // Ground 상태 확인 변수
     private float holdTime = 0f; // Z키 홀드 시간
     private bool isJumping = false; // 점프 중인지 확인
     private float distanceTraveled = 0f;
     private Vector2 lastPosition;
-
+    private bool isSliding = false;
     //public bool IsGrounded => isGrounded; // IsGrounded 프로퍼티
 
     private void Start()
@@ -48,13 +49,6 @@ public class Player : MonoBehaviour
         distanceTraveled += distanceThisFrame;
         lastPosition = transform.position;
 
-        // 일정 거리마다 속도 증가
-        if (distanceTraveled >= nextSpeedIncreaseDistance)
-        {
-            moveSpeed += speedIncreaseAmount;
-            nextSpeedIncreaseDistance += speedIncreaseInterval;
-        }
-
         //Z키 홀드 시간 측정
         if (Input.GetKey(KeyCode.Z))
         {
@@ -69,6 +63,17 @@ public class Player : MonoBehaviour
             PerformJump();
             holdTime = 0f; // 홀드 시간 초기화
             isJumping = false;
+        }
+        // 슬라이드 시작
+        if (Input.GetKey(KeyCode.X) && !isSliding)
+        {
+            StartRolling();
+        }
+
+        // 슬라이드 종료
+        if (Input.GetKeyUp(KeyCode.X) && isSliding)
+        {
+            EndRolling();
         }
     }
 
@@ -98,6 +103,44 @@ public class Player : MonoBehaviour
         if (playerAnimator != null)
         {
             playerAnimator.Play("Jump P1 (Start)");
+        }
+    }
+
+    private void StartRolling()
+    {
+        isSliding = true;
+
+        // 콜라이더 전환
+        normalCollider.enabled = false;
+        slideCollider.enabled = true;
+
+        // 애니메이션 전환
+        if (playerAnimator != null)
+        {
+            playerAnimator.Play("Slide P1");
+        }
+    }
+
+    private void EndRolling()
+    {
+        isSliding = false;
+
+        // 콜라이더 복원
+        slideCollider.enabled = false;
+        normalCollider.enabled = true;
+
+        // 애니메이션 복귀
+        if (playerAnimator != null)
+        {
+            playerAnimator.Play("Run P1");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SpeedUpZone")) // 트리거에 태그가 SpeedUpZone이면
+        {
+            moveSpeed += speedIncreaseAmount; // 이동 속도 증가
         }
     }
 
