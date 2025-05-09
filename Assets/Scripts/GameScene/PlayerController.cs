@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxHoldTime = 1f; // Z키 최대 홀드 시간
     [SerializeField] private float minHoldTime = 0.2f; // Z키 최소 홀드 시간
     [SerializeField] private Animator playerAnimator; // 플레이어 애니메이터
+    [SerializeField] private float speedIncreaseAmount = 1f; // 트리거로 증가할 이동 속도
+    [SerializeField] private CapsuleCollider2D normalCollider; // 기본 콜라이더
+    [SerializeField] private CapsuleCollider2D slideCollider; // 슬라이딩용 콜라이더
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
     private bool IsGrounded = false; // Ground 상태 확인 변수
@@ -17,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool IsJumping = false; // 점프 중인지 확인
     private bool IsDamaged = false; // 데미지 상태 확인 변수
     private bool IsDie = false; // 사망 상태 확인 변수
+    private bool IsCrouching = false; // 슬라이딩 상태 여부
 
     public bool Grounded => IsGrounded; // IsGrounded 프로퍼티
     public bool Damaged => IsDamaged; // IsDamaged 프로퍼티
@@ -57,11 +61,20 @@ public class PlayerController : MonoBehaviour
             }
 
             // Z키를 떼면 점프 실행
-            if (Input.GetKeyUp(KeyCode.Z) && IsJumping)
+            if (Input.GetKeyUp(KeyCode.Z) && IsCrouching)
             {
                 PerformJump();
                 holdTime = 0f; // 홀드 시간 초기화
-                IsJumping = false;
+                IsCrouching = false;
+            }
+            // 슬라이딩 입력 처리
+            if (Input.GetKey(KeyCode.X) && !IsCrouching)
+            {
+                StartSlide(); // X 키 누름 → 슬라이드 시작
+            }
+            else if (Input.GetKeyUp(KeyCode.X) && IsCrouching)
+            {
+                EndSlide(); // X 키 뗌 → 슬라이드 종료
             }
         }
     }
@@ -92,6 +105,32 @@ public class PlayerController : MonoBehaviour
         if (playerAnimator != null)
         {
             playerAnimator.Play("Jump P1 (Start)");
+        }
+    }
+
+    private void StartSlide()
+    {
+        IsCrouching = true;
+
+        normalCollider.enabled = false;
+        slideCollider.enabled = true;
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.Play("Slide P1");
+        }
+    }
+
+    private void EndSlide()
+    {
+        IsCrouching = false;
+
+        slideCollider.enabled = false;
+        normalCollider.enabled = true;
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.Play("Run P1");
         }
     }
 
@@ -153,6 +192,13 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SpeedUpZone")) // 트리거에 태그가 SpeedUpZone이면
+        {
+            moveSpeed += speedIncreaseAmount; // 이동 속도 증가
+        }
+    }
     private void UpdateAnimatorParameters()
     {
         if (playerAnimator != null)
