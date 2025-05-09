@@ -12,11 +12,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimator; // 플레이어 애니메이터
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
-    private bool isGrounded = false; // Ground 상태 확인 변수
+    private bool IsGrounded = false; // Ground 상태 확인 변수
     private float holdTime = 0f; // Z키 홀드 시간
-    private bool isJumping = false; // 점프 중인지 확인
+    private bool IsJumping = false; // 점프 중인지 확인
+    private bool IsDamaged = false; // 데미지 상태 확인 변수
+    private bool IsDie = false; // 사망 상태 확인 변수
 
-    public bool IsGrounded => isGrounded; // IsGrounded 프로퍼티
+    public bool Grounded => IsGrounded; // IsGrounded 프로퍼티
+    public bool Damaged => IsDamaged; // IsDamaged 프로퍼티
+    public bool Die => IsDie; // IsDie 프로퍼티
 
     private void Start()
     {
@@ -34,23 +38,28 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // x축 이동 속도 유지
-        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+        if (IsDie) return; // 사망 상태에서는 아무 동작도 하지 않음
 
-        // Z키 홀드 시간 측정
-        if (Input.GetKey(KeyCode.Z) && isGrounded)
+        if (!IsDamaged)
         {
-            holdTime += Time.deltaTime;
-            holdTime = Mathf.Clamp(holdTime, 0f, maxHoldTime); // 최대 홀드 시간 제한
-            isJumping = true;
-        }
+            // x축 이동 속도 유지
+            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
 
-        // Z키를 떼면 점프 실행
-        if (Input.GetKeyUp(KeyCode.Z) && isJumping)
-        {
-            PerformJump();
-            holdTime = 0f; // 홀드 시간 초기화
-            isJumping = false;
+            // Z키 홀드 시간 측정
+            if (Input.GetKey(KeyCode.Z) && IsGrounded)
+            {
+                holdTime += Time.deltaTime;
+                holdTime = Mathf.Clamp(holdTime, 0f, maxHoldTime); // 최대 홀드 시간 제한
+                IsJumping = true;
+            }
+
+            // Z키를 떼면 점프 실행
+            if (Input.GetKeyUp(KeyCode.Z) && IsJumping)
+            {
+                PerformJump();
+                holdTime = 0f; // 홀드 시간 초기화
+                IsJumping = false;
+            }
         }
     }
 
@@ -88,7 +97,13 @@ public class PlayerController : MonoBehaviour
         // Ground 태그가 붙은 오브젝트와 충돌 시
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            IsGrounded = true;
+        }
+
+        // Spike 태그가 붙은 오브젝트와 충돌 시
+        if (collision.gameObject.CompareTag("Spike") && !IsDamaged)
+        {
+            StartCoroutine(HandleDamage());
         }
     }
 
@@ -97,7 +112,34 @@ public class PlayerController : MonoBehaviour
         // Ground 태그가 붙은 오브젝트에서 벗어날 시
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = false;
+            IsGrounded = false;
         }
+    }
+
+    private IEnumerator HandleDamage()
+    {
+        IsDamaged = true;
+        float originalMoveSpeed = moveSpeed;
+
+        // 속도를 -5로 설정
+        moveSpeed = -5f;
+
+        // 1초 대기
+        yield return new WaitForSeconds(1f);
+
+        // 사망 판정
+        if (CheckDeathCondition())
+        {
+            IsDie = true;
+        }
+            IsDamaged = false;
+            moveSpeed = originalMoveSpeed; // 속도 복구
+    }
+
+    private bool CheckDeathCondition()
+    {
+        // 사망 조건을 확인하는 메서드 (현재는 항상 false 반환)
+        // 실제 게임 로직에 따라 수정 필요
+        return false;
     }
 }
