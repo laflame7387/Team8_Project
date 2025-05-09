@@ -9,4 +9,8 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+    public void GoStart()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
 }
