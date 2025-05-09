@@ -108,6 +108,7 @@ public class Player : MonoBehaviour
 
     private void StartRolling()
     {
+        playerAnimator.SetBool("isSliding", true);
         isSliding = true;
 
         // 콜라이더 전환
