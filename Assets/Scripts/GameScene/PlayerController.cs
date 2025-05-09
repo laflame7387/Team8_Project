@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
     {
         if (IsDie) return; // 사망 상태에서는 아무 동작도 하지 않음
 
+        // 애니메이터에 상태 전달
+        UpdateAnimatorParameters();
+
         if (!IsDamaged)
         {
             // x축 이동 속도 유지
@@ -121,6 +124,9 @@ public class PlayerController : MonoBehaviour
         IsDamaged = true;
         float originalMoveSpeed = moveSpeed;
 
+        // 애니메이터에 IsDamaged 전달
+        playerAnimator.SetBool("IsDamaged", true);
+
         // 속도를 -5로 설정
         moveSpeed = -5f;
 
@@ -132,8 +138,12 @@ public class PlayerController : MonoBehaviour
         {
             IsDie = true;
         }
+        else
+        {
             IsDamaged = false;
+            playerAnimator.SetBool("IsDamaged", false); // 애니메이터에 IsDamaged 전달
             moveSpeed = originalMoveSpeed; // 속도 복구
+        }
     }
 
     private bool CheckDeathCondition()
@@ -141,5 +151,15 @@ public class PlayerController : MonoBehaviour
         // 사망 조건을 확인하는 메서드 (현재는 항상 false 반환)
         // 실제 게임 로직에 따라 수정 필요
         return false;
+    }
+
+    private void UpdateAnimatorParameters()
+    {
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("IsGrounded", IsGrounded);
+            playerAnimator.SetBool("IsDamaged", IsDamaged);
+            playerAnimator.SetBool("IsDie", IsDie);
+        }
     }
 }
