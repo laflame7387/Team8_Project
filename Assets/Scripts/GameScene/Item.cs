@@ -20,7 +20,7 @@ public class Item : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            PlayerControllerTest player = collision.GetComponent<PlayerControllerTest>();
+            PlayerController player = collision.GetComponent<PlayerController>();
 
             if (player != null)
             {
@@ -28,7 +28,7 @@ public class Item : MonoBehaviour
                 {
                     case ItemType.Score:
                         Debug.Log($"{amount}¡° »πµÊ.");
-                        player.AddScore(amount);
+                        ScoreManager.Instance.AddScore(amount);
                         break;
                     case ItemType.SpeedUp:
                         Debug.Log($"º”µµ {amount} ¡ı∞°");
