@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BackGround
+  - Ground
+  - Spike
   layers:
   - Default
   - TransparentFX
