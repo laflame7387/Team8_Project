@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,7 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedIncreaseAmount = 1f; // 트리거로 증가할 이동 속도
     [SerializeField] private CapsuleCollider2D normalCollider; // 기본 콜라이더
     [SerializeField] private CapsuleCollider2D slideCollider; // 슬라이딩용 콜라이더
-    [SerializeField] private int maxHealth = 3;
+    [SerializeField] private float damageInterval = 1f; // 체력 감소 간격 (초)
+    [SerializeField] private float healthDecreaseRate = 1f; //
+    [SerializeField] private int maxHealth = 100; // <__최대 체력__>
 
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool IsDamaged = false; // 데미지 상태 확인 변수
     private bool IsDie = false; // 사망 상태 확인 변수
     private bool IsCrouching = false; // 슬라이딩 상태 여부
+    private float damageTimer = 0f;
     private int currentHealth;
     public bool Grounded => IsGrounded; // IsGrounded 프로퍼티
     public bool Damaged => IsDamaged; // IsDamaged 프로퍼티
@@ -42,6 +46,8 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("Animator is not assigned!");
         }
+        currentHealth = maxHealth; // <__초기 체력 설정__>
+        //hpBar.UpdateHPBar(currentHealth, maxHealth); // <__HP 바 초기화__>
     }
 
     private void Update()
@@ -53,6 +59,19 @@ public class PlayerController : MonoBehaviour
 
         if (!IsDamaged)
         {
+            damageTimer += Time.deltaTime;
+            if (damageTimer >= damageInterval)
+            {
+                damageTimer = 0f;
+                currentHealth -= Mathf.RoundToInt(healthDecreaseRate);
+                //hpBar.UpdateHPBar(currentHealth, maxHealth); // <__HP바 반영__>
+
+                if (CheckDeathCondition())
+                {
+                    HandleDeathByTime(); // <__시간 기반 사망 처리__>
+                }
+            }
+
             // x축 이동 속도 유지
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
 
@@ -163,6 +182,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //private IEnumerator HandleDamage()
+    //{
+    //    IsDamaged = true;
+    //    float originalMoveSpeed = moveSpeed;
+
+    //    playerAnimator.SetBool("IsDamaged", true); // <__피격 애니메이션 활성화__>
+
+    //    moveSpeed = -5f; // <__피격 시 후진__>
+
+    //    yield return new WaitForSeconds(1f);
+
+    //    currentHealth--; // <__체력 감소__>
+    //    //hpBar.UpdateHPBar(currentHealth, maxHealth); // <__HP 바 반영__>
+
+    //    if (CheckDeathCondition())
+    //    {
+    //        IsDie = true; // <__사망 처리__>
+    //    }
+    //    else
+    //    {
+    //        IsDamaged = false;
+    //        playerAnimator.SetBool("IsDamaged", false); // <__애니메이션 리셋__>
+    //        moveSpeed = originalMoveSpeed; // <__속도 복원__>
+    //    }
+    //}
+
+    private bool CheckDeathCondition()
+    {
+        return currentHealth <= 0; // <__체력이 0 이하일 때 사망__>
+    }
+
+    private void HandleDeathByTime()
+    {
+        IsDie = true;
+        Debug.Log("Player died by time/health depletion."); // <__체력 고갈로 인한 사망__>
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Ground 태그가 붙은 오브젝트와 충돌 시
@@ -186,20 +241,20 @@ public class PlayerController : MonoBehaviour
             IsGrounded = false;
         }
     }
-    private bool CheckDeathCondition()
-    {
-        if (transform.position.y < -10f) // 낙사
-        {
-            return true;
-        }
+    //private bool CheckDeathCondition()
+    //{
+    //    if (transform.position.y < -10f) // 낙사
+    //    {
+    //        return true;
+    //    }
 
-        if (currentHealth <= 0) // 체력 고갈
-        {
-            return true;
-        }
+    //    if (currentHealth <= 0) // 체력 고갈
+    //    {
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
