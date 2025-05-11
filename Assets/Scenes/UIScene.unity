@@ -414,7 +414,6 @@ RectTransform:
   - {fileID: 2053551703}
   - {fileID: 1076967082}
   - {fileID: 648724935}
-  - {fileID: 1320843962}
   m_Father: {fileID: 1259438213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2142,6 +2141,7 @@ RectTransform:
   - {fileID: 1641645837}
   - {fileID: 1760076086}
   - {fileID: 179498030}
+  - {fileID: 1320843962}
   m_Father: {fileID: 537714956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2219,11 +2219,11 @@ RectTransform:
   - {fileID: 623626047}
   - {fileID: 106055104}
   - {fileID: 1637960546}
-  m_Father: {fileID: 179498030}
+  m_Father: {fileID: 1259438213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000022888184, y: -160}
+  m_AnchoredPosition: {x: 100.00007, y: -80}
   m_SizeDelta: {x: 400, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1320843963
@@ -3634,7 +3634,7 @@ MonoBehaviour:
   m_text: "\uC810\uC218 100\uC810 \uB2EC\uC131"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1f05f26ba7c22f409185c68130073c8, type: 2}
-  m_sharedMaterial: {fileID: -7946527712534310375, guid: d1f05f26ba7c22f409185c68130073c8, type: 2}
+  m_sharedMaterial: {fileID: -9220094749603438551, guid: d1f05f26ba7c22f409185c68130073c8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
