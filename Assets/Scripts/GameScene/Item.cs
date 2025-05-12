@@ -7,6 +7,7 @@ public class Item : MonoBehaviour
 {
     [SerializeField] private int amount = 1;
     [SerializeField] private ItemType itemType = ItemType.Score;
+    [SerializeField] private AudioClip pickupSound;
 
     public enum ItemType
     {
@@ -24,6 +25,7 @@ public class Item : MonoBehaviour
 
             if (player != null)
             {
+                PlayPickupSound();
                 switch (itemType)
                 {
                     case ItemType.Score:
@@ -45,7 +47,14 @@ public class Item : MonoBehaviour
                 }
             }
 
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1f);
         }
+    }
+    
+    private void PlayPickupSound()
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        if (audio != null && pickupSound != null)
+            audio.PlayOneShot(pickupSound);
     }
 }

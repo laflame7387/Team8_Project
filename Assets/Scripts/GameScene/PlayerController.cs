@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,135 +10,135 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxHoldTime = 1f; // Z키 최대 홀드 시간
     [SerializeField] private float minHoldTime = 0.2f; // Z키 최소 홀드 시간
     [SerializeField] private Animator playerAnimator; // 플레이어 애니메이터
-    [SerializeField] private float speedIncreaseAmount = 1f; // 트리거로 증가할 이동 속도
-    [SerializeField] private CapsuleCollider2D normalCollider; // 기본 콜라이더
-    [SerializeField] private CapsuleCollider2D slideCollider; // 슬라이딩용 콜라이더
-    [SerializeField] private HpbarController hpBarController; // 체력 관리 전용 컴포넌트
+    [SerializeField] private const float MinMoveSpeed = 1.0f; // 최소 속도
+    [SerializeField] private int health = 100; // 현재 체력
+    [SerializeField] private const int MaxHealth = 100; // 최대 체력
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
     private bool IsGrounded = false; // Ground 상태 확인 변수
     private float holdTime = 0f; // Z키 홀드 시간
     private bool IsJumping = false; // 점프 중인지 확인
-    private bool IsDamaged = false; // 피격 상태 확인
-    private bool IsDie = false; // 사망 상태 확인
-    private bool IsCrouching = false; // 슬라이딩 상태 여부
+    private bool IsDamaged = false; // 데미지 상태 확인 변수
+    private bool IsDie = false; // 사망 상태 확인 변수
 
-    public bool Grounded => IsGrounded; // 외부 접근용 프로퍼티
-    public bool Damaged => IsDamaged;
-    public bool Die => IsDie;
+    public bool Grounded => IsGrounded; // IsGrounded 프로퍼티
+    public bool Damaged => IsDamaged; // IsDamaged 프로퍼티
+    public bool Die => IsDie; // IsDie 프로퍼티
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
         if (rb == null)
+        {
             Debug.LogError("Rigidbody2D is not attached to the player!");
+        }
 
         if (playerAnimator == null)
+        {
             Debug.LogError("Animator is not assigned!");
-
-        if (hpBarController == null)
-            Debug.LogError("HpbarController is not assigned!");
-
-        // 체력 시스템에서 사망 이벤트 구독
-        hpBarController.OnDeath += HandleDeath;
+        }
     }
 
     private void Update()
     {
-        if (IsDie) return; // 사망 상태에서는 조작 불가
+        if (IsDie) return; // 사망 상태에서는 아무 동작도 하지 않음
 
-        UpdateAnimatorParameters(); // 애니메이터 파라미터 갱신
+        // 애니메이터에 상태 전달
+        UpdateAnimatorParameters();
 
-        // x축 이동
-        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-
-        // 점프 입력 처리
-        if (Input.GetKey(KeyCode.Z) && IsGrounded)
+        if (!IsDamaged)
         {
-            holdTime += Time.deltaTime;
-            holdTime = Mathf.Clamp(holdTime, 0f, maxHoldTime);
-            IsJumping = true;
-        }
+            // x축 이동 속도 유지
+            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
 
-        if (Input.GetKeyUp(KeyCode.Z) && IsJumping)
-        {
-            PerformJump();
-            holdTime = 0f;
-            IsJumping = false;
-        }
+            // Z키 홀드 시간 측정
+            if (Input.GetKey(KeyCode.Z) && IsGrounded)
+            {
+                holdTime += Time.deltaTime;
+                holdTime = Mathf.Clamp(holdTime, 0f, maxHoldTime); // 최대 홀드 시간 제한
+                IsJumping = true;
+            }
 
-        // 슬라이드 처리
-        if (Input.GetKey(KeyCode.X) && !IsCrouching)
-        {
-            StartSlide();
+            // Z키를 떼면 점프 실행
+            if (Input.GetKeyUp(KeyCode.Z) && IsJumping)
+            {
+                PerformJump();
+                holdTime = 0f; // 홀드 시간 초기화
+                IsJumping = false;
+            }
         }
-        else if (Input.GetKeyUp(KeyCode.X) && IsCrouching)
-        {
-            EndSlide();
-        }
+    }
+
+    public void IncreaseSpeed(float amount)
+    {
+        moveSpeed += amount;
+        Debug.Log($"속도 증가, 현재 속도 : {moveSpeed}");
+    }
+
+    public void DecreaseSpeed(float amount)
+    {
+        moveSpeed -= amount;
+        if (moveSpeed < MinMoveSpeed) moveSpeed = MinMoveSpeed;
+        Debug.Log($"속도 감소, 현재 속도 : {moveSpeed}");
+    }
+
+    public void Heal(int mount)
+    {
+        health += mount;
+        if (health > MaxHealth) health = MaxHealth;
+        Debug.Log($"체력 회복, 현재 체력 : {health}");
     }
 
     private void PerformJump()
     {
+        // 추가 속도 계산
         float additionalVelocity = 0f;
 
         if (holdTime >= maxHoldTime)
+        {
+            // 최대 홀드 시간 이후에는 추가 속도 최대값
             additionalVelocity = maxAdditionalJumpVelocity;
+        }
         else if (holdTime >= minHoldTime)
+        {
+            // 최소 홀드 시간 이상일 때 선형 보간
             additionalVelocity = Mathf.Lerp(0f, maxAdditionalJumpVelocity, (holdTime - minHoldTime) / (maxHoldTime - minHoldTime));
+        }
 
+        // 최종 점프 속도 계산
         float jumpVelocity = baseJumpVelocity + additionalVelocity;
 
+        // Rigidbody2D에 y축 속도 적용
         rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
 
+        // 점프 애니메이션 재생
         if (playerAnimator != null)
+        {
             playerAnimator.Play("Jump P1 (Start)");
-    }
-
-    private void StartSlide()
-    {
-        IsCrouching = true;
-        normalCollider.enabled = false;
-        slideCollider.enabled = true;
-
-        if (playerAnimator != null)
-            playerAnimator.Play("Slide P1");
-    }
-
-    private void EndSlide()
-    {
-        IsCrouching = false;
-        slideCollider.enabled = false;
-        normalCollider.enabled = true;
-
-        if (playerAnimator != null)
-            playerAnimator.Play("Run P1");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Ground 태그가 붙은 오브젝트와 충돌 시
         if (collision.gameObject.CompareTag("Ground"))
+        {
             IsGrounded = true;
+        }
 
+        // Spike 태그가 붙은 오브젝트와 충돌 시
         if (collision.gameObject.CompareTag("Spike") && !IsDamaged)
         {
-            StartCoroutine(HandleDamage()); // 피격 처리 코루틴 실행
-            hpBarController.TakeDamage(0.1f); // 체력 감소 호출
+            StartCoroutine(HandleDamage());
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        // Ground 태그가 붙은 오브젝트에서 벗어날 시
         if (collision.gameObject.CompareTag("Ground"))
-            IsGrounded = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("SpeedUpZone"))
         {
-            moveSpeed += speedIncreaseAmount; // 트리거 진입 시 속도 증가
+            IsGrounded = false;
         }
     }
 
@@ -148,26 +147,33 @@ public class PlayerController : MonoBehaviour
         IsDamaged = true;
         float originalMoveSpeed = moveSpeed;
 
+        // 애니메이터에 IsDamaged 전달
         playerAnimator.SetBool("IsDamaged", true);
-        moveSpeed = 0f; // 뒤로 밀림
 
+        // 속도를 -5로 설정
+        moveSpeed = -5f;
+
+        // 1초 대기
         yield return new WaitForSeconds(1f);
 
-        // 사망 여부는 HpbarController에서 판정
-        if (!hpBarController.IsDead())
+        // 사망 판정
+        if (CheckDeathCondition())
+        {
+            IsDie = true;
+        }
+        else
         {
             IsDamaged = false;
-            playerAnimator.SetBool("IsDamaged", false);
-            moveSpeed = originalMoveSpeed;
+            playerAnimator.SetBool("IsDamaged", false); // 애니메이터에 IsDamaged 전달
+            moveSpeed = originalMoveSpeed; // 속도 복구
         }
     }
 
-    private void HandleDeath()
+    private bool CheckDeathCondition()
     {
-        IsDie = true;
-        playerAnimator.SetBool("IsDie", true);
-        rb.velocity = Vector2.zero;
-        Debug.Log("플레이어가 사망했습니다.");
+        // 사망 조건을 확인하는 메서드 (현재는 항상 false 반환)
+        // 실제 게임 로직에 따라 수정 필요
+        return false;
     }
 
     private void UpdateAnimatorParameters()
