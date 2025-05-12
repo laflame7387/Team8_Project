@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Spike
+  - Intro_BG
   layers:
   - Default
   - TransparentFX
