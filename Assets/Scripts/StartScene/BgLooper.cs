@@ -7,7 +7,7 @@ public class BgLooper : MonoBehaviour
     public int numBg = 3;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Intro_Bg"))
+        if(collision.CompareTag("Intro_BG"))
         {
             float widthOfBg = ((BoxCollider2D)collision).size.x;
             Vector3 pos = collision.transform.position;
