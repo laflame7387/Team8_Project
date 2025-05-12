@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
 
             if (player != null)
             {
-                PlayPickupSound();
+                AudioManager.Instance.PlayItemSound(itemType);
                 switch (itemType)
                 {
                     case ItemType.Score:
@@ -49,13 +49,6 @@ public class Item : MonoBehaviour
 
             StartCoroutine(PickupEffect());
         }
-    }
-
-    private void PlayPickupSound()
-    {
-        AudioSource audio = GetComponent<AudioSource>();
-        if (audio != null && pickupSound != null)
-            audio.PlayOneShot(pickupSound);
     }
 
     private IEnumerator PickupEffect()
