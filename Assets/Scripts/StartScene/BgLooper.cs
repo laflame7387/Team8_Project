@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class BgLooper : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    public int numBg = 3;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameObject.GetComponent<Collider2D>
+        if(collision.CompareTag("Intro_Bg"))
+        {
+            float widthOfBg = ((BoxCollider2D)collision).size.x;
+            Vector3 pos = collision.transform.position;
+
+            pos.x = widthOfBg * numBg;
+            collision.transform.position = pos;
+            return;
+        }
     }
 }
