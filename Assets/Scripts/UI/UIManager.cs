@@ -9,13 +9,41 @@ interface IButton
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instactiate { get; private set; }
+    public static UIManager instance = null;
 
     [SerializeField] private GameObject closeButton;
     [SerializeField] private GameObject dimBackground;
 
 
     private Transform prevButtonPosition;
+
+    //UIManager ΩÃ±€≈Ê»≠
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    //UIManager «¡∑Œ∆€∆º»≠
+    public static UIManager Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
