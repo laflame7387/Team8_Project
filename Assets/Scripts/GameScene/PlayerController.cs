@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     private bool IsJumping = false; // 점프 중인지 확인
     private bool IsDamaged = false; // 데미지 상태 확인 변수
     private bool IsDie = false; // 사망 상태 확인 변수
+    private bool IsCrouching = false; // 크라우치 상태 확인 변수
+    private BoxCollider2D boxCollider; // BoxCollider2D 컴포넌트
+    private Vector2 originalColliderSize; // 원래 콜라이더 크기
+    private Vector2 crouchingColliderSize; // 크라우칭 시 콜라이더 크기
 
     public bool Grounded => IsGrounded; // IsGrounded 프로퍼티
     public bool Damaged => IsDamaged; // IsDamaged 프로퍼티
@@ -25,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>(); // BoxCollider2D 초기화
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D is not attached to the player!");
@@ -33,6 +38,16 @@ public class PlayerController : MonoBehaviour
         if (playerAnimator == null)
         {
             Debug.LogError("Animator is not assigned!");
+        }
+
+        if (boxCollider == null)
+        {
+            Debug.LogError("BoxCollider2D is not attached to the player!");
+        }
+        else
+        {
+            originalColliderSize = boxCollider.size;
+            crouchingColliderSize = new Vector2(originalColliderSize.x, originalColliderSize.y * 0.5f); // y축 크기를 절반으로 줄임
         }
     }
 
@@ -48,12 +63,24 @@ public class PlayerController : MonoBehaviour
             // x축 이동 속도 유지
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
 
-            // Z키 홀드 시간 측정
+            // Z키 홀드 시간 측정 (점프 우선)
             if (Input.GetKey(KeyCode.Z) && IsGrounded)
             {
                 holdTime += Time.deltaTime;
                 holdTime = Mathf.Clamp(holdTime, 0f, maxHoldTime); // 최대 홀드 시간 제한
                 IsJumping = true;
+                IsCrouching = false; // 점프 중에는 크라우치 비활성화
+            }
+            else if (Input.GetKey(KeyCode.X))
+            {
+                // X키 홀드 시 크라우치 상태 활성화
+                IsCrouching = true;
+                AdjustColliderSize(true); // 크라우칭 시 콜라이더 크기 조정
+            }
+            else
+            {
+                IsCrouching = false;
+                AdjustColliderSize(false); // 크라우칭 해제 시 콜라이더 크기 복구
             }
 
             // Z키를 떼면 점프 실행
@@ -63,6 +90,14 @@ public class PlayerController : MonoBehaviour
                 holdTime = 0f; // 홀드 시간 초기화
                 IsJumping = false;
             }
+        }
+    }
+
+    private void AdjustColliderSize(bool isCrouching)
+    {
+        if (boxCollider != null)
+        {
+            boxCollider.size = isCrouching ? crouchingColliderSize : originalColliderSize;
         }
     }
 
@@ -107,6 +142,21 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Spike") && !IsDamaged)
         {
             StartCoroutine(HandleDamage());
+
+
+
+            // 부모 오브젝트가 SpikeBundle 태그를 가지고 있는지 확인
+            Transform parent = collision.gameObject.transform.parent;
+            if (parent != null && parent.CompareTag("SpikeBundle"))
+            {
+                // 부모 오브젝트 파괴
+                Destroy(parent.gameObject);
+            }
+            else
+            {
+                // 부모가 없거나 SpikeBundle 태그가 없으면 스파이크 오브젝트만 파괴
+                Destroy(collision.gameObject);
+            }
         }
     }
 
@@ -148,8 +198,15 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckDeathCondition()
     {
-        // 사망 조건을 확인하는 메서드 (현재는 항상 false 반환)
+        // 사망 조건을 확인하는 메서드
         // 실제 게임 로직에 따라 수정 필요
+        if (transform.position.y <= -6f)
+        {
+            Debug.Log("Player has fallen to death.");
+            return true;
+        }
+
+
         return false;
     }
 
@@ -160,6 +217,7 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("IsGrounded", IsGrounded);
             playerAnimator.SetBool("IsDamaged", IsDamaged);
             playerAnimator.SetBool("IsDie", IsDie);
+            playerAnimator.SetBool("IsCrouching", IsCrouching);
         }
     }
 }
