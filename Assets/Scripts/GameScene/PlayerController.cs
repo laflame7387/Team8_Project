@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerAnimator == null)
             Debug.LogError("Animator is not assigned!");
-        }
+    
 
         if (boxCollider == null)
         {
