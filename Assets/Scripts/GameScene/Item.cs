@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             PlayerController player = collision.GetComponent<PlayerController>();
 
@@ -47,14 +47,39 @@ public class Item : MonoBehaviour
                 }
             }
 
-            Destroy(gameObject, 0.1f);
+            StartCoroutine(PickupEffect());
         }
     }
-    
+
     private void PlayPickupSound()
     {
         AudioSource audio = GetComponent<AudioSource>();
         if (audio != null && pickupSound != null)
             audio.PlayOneShot(pickupSound);
+    }
+
+    private IEnumerator PickupEffect()
+    {
+        float duration = 0.3f;
+        float time = 0f;
+
+        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+        Vector3 startPos = transform.position;
+        Vector3 endPos = startPos + new Vector3(0, 0.5f, 0);
+
+        Color originalColor = sr.color;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float t = time / duration;
+
+            transform.position = Vector3.Lerp(startPos, endPos, t);
+            sr.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1 - t);
+
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }
