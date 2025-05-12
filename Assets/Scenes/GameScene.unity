@@ -538,6 +538,7 @@ MonoBehaviour:
   maxHoldTime: 1
   minHoldTime: 0.2
   playerAnimator: {fileID: 563599737}
+  health: 100
 --- !u!1001 &608814549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2003,7 +2004,7 @@ GameObject:
   - component: {fileID: 3477409435212790424}
   - component: {fileID: 2763490595951784648}
   m_Layer: 0
-  m_Name: Spike (1)
+  m_Name: Spike
   m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3611,7 +3612,7 @@ Transform:
   m_GameObject: {fileID: 2992378076155309730}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: -0.26355362, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8469,7 +8470,7 @@ Transform:
   m_GameObject: {fileID: 994254407472152897}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 93.29, y: -2.0766659, z: 0}
+  m_LocalPosition: {x: 94.17, y: -2.73555, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
