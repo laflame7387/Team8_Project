@@ -2383,6 +2383,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5833115923572025296, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6037418197231930309, guid: f621f055ef728584d8c123a6643f6fb6, type: 3}
       propertyPath: m_Name
       value: ScoreItem2
