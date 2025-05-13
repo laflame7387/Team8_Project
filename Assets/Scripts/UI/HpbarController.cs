@@ -3,31 +3,49 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class HpbarController : MonoBehaviour
 {
-    public RectTransform HpBar; // 체력바 스케일 조정용
-    private float maxHealth = 100f; // 최대 체력
-    private float currentHealth = 100f; // 현재 체력
+    private PlayerController playerController;
 
-    public void SetMaxHealth(float max)
+    [SerializeField] private Slider hpBar; // 체력바
+    public float maxHealth = 100f; // 최대 체력
+    public float currentHealth = 100f; // 현재 체력
+
+    private void Start()
     {
-        maxHealth = max;
-        currentHealth = max;
-        UpdateBar();
+        hpBar.interactable = false;
+        //playerController = FindObjectOfType<PlayerController>();
+
+        maxHealth = playerController.MaxHealth;
+        currentHealth = playerController.Health;
     }
+
+    private void Update()
+    {
+        //currentHealth -= Time.deltaTime;
+        hpBar.value = currentHealth / maxHealth;
+        
+    }
+
+    //public void SetMaxHealth(float max)
+    //{
+    //    maxHealth = max;
+    //    currentHealth = max;
+    //    UpdateBar();
+    //}
 
     // 체력 업데이트 (외부에서 호출)
-    public void SetHealth(float value)
-    {
-        currentHealth = Mathf.Clamp(value, 0f, maxHealth);
-        UpdateBar();
-    }
+    //public void SetHealth(float value)
+    //{
+    //    currentHealth = Mathf.Clamp(value, 0f, maxHealth);
+    //    //UpdateBar();
+    //}
 
-    // 실제 UI 스케일 조정
-    private void UpdateBar()
-    {
-        float ratio = currentHealth / maxHealth;
-        HpBar.localScale = new Vector3(ratio, 1f, 1f);
-    }
+    // UI의 value값 조절
+    //private void UpdateBar()
+    //{
+        
+    //}
 }
