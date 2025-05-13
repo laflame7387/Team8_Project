@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxHoldTime = 1f;
     [SerializeField] private float minHoldTime = 0.2f;
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] private const float MinMoveSpeed = 1.0f;
+    [SerializeField] private const float MinMoveSpeed = 5f;
     [SerializeField] private int health = 100;
     public int Health => health;
     [SerializeField] private int maxHealth = 100;
