@@ -6,8 +6,8 @@ public class ScoreBoard : MonoBehaviour
 {
     private ScoreManager scoreManager;
 
-    [SerializeField] private int nowScore;
-    public int NowScore => nowScore;
+    //[SerializeField] private int nowScore;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,6 @@ public class ScoreBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //ScoreManager.Instance.
     }
 }
