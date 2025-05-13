@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private const float MinMoveSpeed = 1.0f;
     [SerializeField] private int health = 100;
-    [SerializeField] private const int MaxHealth = 100;
+    public int Health { get; private set; }
+    [SerializeField] private int maxHealth = 100;
+    public int MaxHealth { get; private set; }
     [SerializeField] private HpbarController hpBarController;
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
@@ -34,6 +36,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>(); // BoxCollider2D 초기화
+        StartCoroutine(ReduceHealthOverTime());
+
         if (rb == null)
             Debug.LogError("Rigidbody2D is not attached to the player!");
 
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if (IsDie) return;
 
         UpdateAnimatorParameters();
+        
 
         if (!IsDamaged)
         {
@@ -115,8 +120,8 @@ public class PlayerController : MonoBehaviour
     public void Heal(int amount)
     {
         health += amount;
-        if (health > MaxHealth) health = MaxHealth;
-        hpBarController?.SetHealth(health);
+        if (health > maxHealth) health = maxHealth;
+        //hpBarController?.SetHealth(health);
         Debug.Log($"체력 회복, 현재 체력 : {health}");
     }
 
@@ -183,7 +188,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("IsDamaged", true);
 
         health -= 10;
-        hpBarController?.SetHealth(health);
+        //hpBarController?.SetHealth(health);
 
         if (CheckDeathCondition())
         {
@@ -204,8 +209,8 @@ public class PlayerController : MonoBehaviour
         while (!IsDie)
         {
             health -= 1;
-            health = Mathf.Clamp(health, 0, MaxHealth);
-            hpBarController.SetHealth(health);
+            health = Mathf.Clamp(health, 0, maxHealth);
+            //hpBarController.SetHealth(health);
 
             if (health <= 0)
             {
