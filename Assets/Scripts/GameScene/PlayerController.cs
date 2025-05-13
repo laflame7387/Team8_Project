@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private const float MinMoveSpeed = 1.0f;
     [SerializeField] private int health = 100;
-    public int Health { get; private set; }
+    public int Health => health;
     [SerializeField] private int maxHealth = 100;
-    public int MaxHealth { get; private set; }
+    public int MaxHealth => maxHealth;
     [SerializeField] private HpbarController hpBarController;
 
     private Rigidbody2D rb; // Rigidbody2D 컴포넌트
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>(); // BoxCollider2D 초기화
+
         StartCoroutine(ReduceHealthOverTime());
 
         if (rb == null)
