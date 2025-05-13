@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool IsDamaged = false; // 데미지 상태 확인 변수
     private bool IsDie = false; // 사망 상태 확인 변수
     private bool IsCrouching = false; // 크라우치 상태 확인 변수
-    private BoxCollider2D boxCollider; // BoxCollider2D 컴포넌트
+    private CapsuleCollider2D capsuleCollider; // BoxCollider2D 컴포넌트
     private Vector2 originalColliderSize; // 원래 콜라이더 크기
     private Vector2 crouchingColliderSize; // 크라우칭 시 콜라이더 크기
 
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>(); // BoxCollider2D 초기화
+        capsuleCollider = GetComponent<CapsuleCollider2D>(); // BoxCollider2D 초기화
         if (rb == null)
             Debug.LogError("Rigidbody2D is not attached to the player!");
 
@@ -41,13 +41,13 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("Animator is not assigned!");
     
 
-        if (boxCollider == null)
+        if (capsuleCollider == null)
         {
-            Debug.LogError("BoxCollider2D is not attached to the player!");
+            Debug.LogError("CapsuleCollider2D is not attached to the player!");
         }
         else
         {
-            originalColliderSize = boxCollider.size;
+            originalColliderSize = capsuleCollider.size;
             crouchingColliderSize = new Vector2(originalColliderSize.x, originalColliderSize.y * 0.5f); // y축 크기를 절반으로 줄임
         }
     }
@@ -93,9 +93,9 @@ public class PlayerController : MonoBehaviour
 
     private void AdjustColliderSize(bool isCrouching)
     {
-        if (boxCollider != null)
+        if (capsuleCollider != null)
         {
-            boxCollider.size = isCrouching ? crouchingColliderSize : originalColliderSize;
+            capsuleCollider.size = isCrouching ? crouchingColliderSize : originalColliderSize;
         }
     }
 
