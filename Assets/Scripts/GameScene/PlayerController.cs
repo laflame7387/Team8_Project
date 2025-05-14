@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerAnimator == null)
             Debug.LogError("Animator is not assigned!");
-    
+
 
         if (capsuleCollider == null)
         {
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (IsDie) return;
 
         UpdateAnimatorParameters();
-        
+
 
         if (!IsDamaged)
         {
@@ -235,17 +235,17 @@ public class PlayerController : MonoBehaviour
         Debug.Log("플레이어 사망!");
     }
 
-    private bool CheckDeathCondition()
+    public bool CheckDeathCondition()
     {
         // 사망 조건을 확인하는 메서드
-        // 실제 게임 로직에 따라 수정 필요
         if (transform.position.y <= -6f)
         {
-            Debug.Log("Player has fallen to death.");
             return true;
         }
-
-
+        else if (health <= 0)
+        {
+            return true;
+        }
         return false;
     }
 
@@ -259,16 +259,4 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("IsCrouching", IsCrouching);
         }
     }
-
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("SpeedUp"))
-    //    {
-    //        IncreaseSpeed(2f); // 원하는 증가량만큼 설정
-    //        Debug.Log("스피드 트리거 감지! 속도 증가.");
-
-    //        Destroy(other.gameObject);
-    //    }
-
-    //}
 }
