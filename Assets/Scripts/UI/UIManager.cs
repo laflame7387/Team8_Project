@@ -9,13 +9,16 @@ interface IButton
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance = null;
+    public static UIManager instance { get; private set; }
+
+    public bool isWaiting = true;
+    private int three = 3;
 
     [SerializeField] private GameObject closeButton;
     [SerializeField] private GameObject dimBackground;
 
     private Transform prevButtonPosition;
-
+    
     //UIManager ΩÃ±€≈Ê»≠
     private void Awake()
     {
@@ -68,7 +71,25 @@ public class UIManager : MonoBehaviour
     public void OnClicked()
     {
         dimBackground.SetActive(true);
-        
     }
 
+    public void WaitThreeSeconds()
+    {
+        if (isWaiting == true) 
+        {
+
+            isWaiting = false;
+        }
+
+        else
+        {
+            return;
+        }
+    }
+
+    IEnumerator ThreeSeconds()
+    {
+
+        yield return null;
+    }
 }
