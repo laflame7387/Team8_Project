@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreBoard : MonoBehaviour
+public class Score : MonoBehaviour
 {
     private ScoreManager scoreManager;
 
