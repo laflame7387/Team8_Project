@@ -10,6 +10,7 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
         Time.timeScale = 1.0f;
+        ScoreManager.Instance.SetScore(ScoreManager.Instance.CurrentScore);
         ScoreManager.Instance.ResetScore();
     }
     public void GoStart()
@@ -20,6 +21,7 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
         Time.timeScale = 1.0f;
+        ScoreManager.Instance.SetScore(ScoreManager.Instance.CurrentScore);
         ScoreManager.Instance.ResetScore();
     }
     public void ExitGame()

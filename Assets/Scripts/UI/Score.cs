@@ -16,6 +16,15 @@ public class Score : MonoBehaviour
     void Start()
     {
         scoreManager = FindAnyObjectByType<ScoreManager>();
+
+        if (scoreManager != null )
+        {
+            Debug.Log("ScoreManager 찾기 성공");
+        }
+        else
+        {
+            scoreManager = FindAnyObjectByType<ScoreManager>();
+        }
     }
 
     // Update is called once per frame
