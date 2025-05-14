@@ -9033,6 +9033,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   hpBarController: {fileID: 1013657525}
+  JumpGauge: {fileID: 945084071074368241}
 --- !u!61 &1712841633
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11880,6 +11881,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2511255819459907786, guid: aae704886f370ed43bf0c86c1744c878, type: 3}
   m_PrefabInstance: {fileID: 4671735514112021358}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &945084071074368241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7253884234385025698, guid: aae704886f370ed43bf0c86c1744c878, type: 3}
+  m_PrefabInstance: {fileID: 4671735514112021358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1784102462511487659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12138,7 +12144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7253884234385025698, guid: aae704886f370ed43bf0c86c1744c878, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

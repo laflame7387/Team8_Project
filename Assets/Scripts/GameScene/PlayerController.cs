@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public bool Damaged => IsDamaged;
     public bool Die => IsDie;
 
+    public GameObject JumpGauge;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour
                 holdTime = Mathf.Clamp(holdTime, 0f, maxHoldTime);
                 IsJumping = true;
                 IsCrouching = false; // 점프 중에는 크라우치 비활성화
+                JumpGauge.SetActive(true);
             }
             else if (Input.GetKey(KeyCode.X))
             {
@@ -93,6 +96,7 @@ public class PlayerController : MonoBehaviour
                 PerformJump();
                 holdTime = 0f;
                 IsJumping = false;
+                JumpGauge.SetActive(false);
             }
         }
     }
