@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
     {
         if (isWaiting == true) 
         {
-
+            StartCoroutine(ThreeSeconds());
             isWaiting = false;
         }
 
@@ -89,7 +89,6 @@ public class UIManager : MonoBehaviour
 
     IEnumerator ThreeSeconds()
     {
-
-        yield return null;
+        yield return new WaitForSeconds(3.0f);
     }
 }
