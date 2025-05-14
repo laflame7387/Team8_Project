@@ -15,10 +15,11 @@ public class HpbarController : MonoBehaviour
 
     private void Start()
     {
-        //hpBar.interactable = false;
-        playerController = FindObjectOfType<PlayerController>();
+        //체력바 상호작용 못하게
+        hpBar.interactable = false;
 
-        
+        //외부에 있는 playerController 스크립트 찾기
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     private void Update()
@@ -28,26 +29,5 @@ public class HpbarController : MonoBehaviour
 
         hpBar.value = currentHealth / maxHealth;
         //Mathf.Clamp(currentHealth, 0, maxHealth);
-        //
     }
-
-    //public void SetMaxHealth(float max)
-    //{
-    //    maxHealth = max;
-    //    currentHealth = max;
-    //    UpdateBar();
-    //}
-
-    // 체력 업데이트 (외부에서 호출)
-    //public void SetHealth(float value)
-    //{
-    //    currentHealth = Mathf.Clamp(value, 0f, maxHealth);
-    //    //UpdateBar();
-    //}
-
-    // UI의 value값 조절
-    //private void UpdateBar()
-    //{
-        
-    //}
 }
