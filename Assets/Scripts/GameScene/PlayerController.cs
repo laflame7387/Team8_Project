@@ -27,11 +27,13 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider2D capsuleCollider; // BoxCollider2D 컴포넌트
     private Vector2 originalColliderSize; // 원래 콜라이더 크기
     private Vector2 crouchingColliderSize; // 크라우칭 시 콜라이더 크기
+    
+    public bool isWaiting = false;
 
     public bool Grounded => IsGrounded;
     public bool Damaged => IsDamaged;
     public bool Die => IsDie;
-    public bool isWaiting = false;
+    
 
     public GameObject JumpGauge;
 
@@ -213,6 +215,12 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ReduceHealthOverTime()
     {
+        //기다리는 중에는 체력 달지 않게
+        while (!isWaiting)
+        {
+            yield return null; // 매 프레임 검사하면서 대기
+        }
+
         while (!IsDie)
         {
             health -= 1;
@@ -253,6 +261,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAnimatorParameters()
     {
+        
         if (playerAnimator != null)
         {
             playerAnimator.SetBool("IsGrounded", IsGrounded);

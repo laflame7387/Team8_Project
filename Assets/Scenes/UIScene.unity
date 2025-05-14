@@ -5912,6 +5912,11 @@ PrefabInstance:
       propertyPath: dimBackground
       value: 
       objectReference: {fileID: 1757301066}
+    - target: {fileID: 6169597788037851262, guid: b9ef9c5fd5d469f4c92bb10e707ab491,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1712841632}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
