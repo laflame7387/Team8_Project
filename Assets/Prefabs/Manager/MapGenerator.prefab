@@ -48,5 +48,6 @@ MonoBehaviour:
   mapChunks:
   - {fileID: 802770046036873250, guid: fb6679e27dbcb184fad591a3ca3e80f7, type: 3}
   - {fileID: 2619692395213641365, guid: 4b5ac6237cd705344b05dd1e66894c06, type: 3}
+  - {fileID: 2814551798207447158, guid: 6ce93d87dcfac86438f444fb841e970e, type: 3}
   chunkLength: 192
   preloadChunks: 2

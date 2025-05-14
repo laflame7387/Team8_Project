@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7ce38cd2dd4484784275187a9a9ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 1
+  amount: 10
   itemType: 3
   pickupSound: {fileID: 8300000, guid: 51c6962c1c5b345f2bb3eef2489ce619, type: 3}
 --- !u!61 &2075149586969382660
