@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 interface IButton
 {
@@ -9,19 +11,21 @@ interface IButton
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance = null;
-
-    [SerializeField] private GameObject closeButton;
+    public static UIManager Instance { get; private set; }
+    public bool isWaiting = false;
+    
+    [SerializeField] private TextMeshProUGUI animationText;
     [SerializeField] private GameObject dimBackground;
+    //[SerializeField] private GameObject closeButton;
 
     private Transform prevButtonPosition;
-
+    
     //UIManager 싱글톤화
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
 
@@ -32,24 +36,38 @@ public class UIManager : MonoBehaviour
     }
 
     //UIManager 프로퍼티화
-    public static UIManager Instance
-    {
-        get
-        {
-            if(instance == null)
-            {
-                return null;
-            }
-            return instance;
-        }
-    }
+    //public static UIManager instance
+    //{
+    //    get
+    //    {
+    //        if(instance == null)
+    //        {
+    //            return null;
+    //        }
+    //        return instance;
+    //    }
+    //}
 
-    // Start is called before the first frame update
     void Start()
     {
-        if (closeButton != null)
+        //if (closeButton != null)
+        //{
+        //    prevButtonPosition = closeButton.transform.parent;
+        //}
+
+        //게임씬 시작시 3초 기다리기
+        if (SceneManager.GetActiveScene().name == "GameScene")
         {
-            prevButtonPosition = closeButton.transform.parent;
+            dimBackground.SetActive(true);
+            animationText.gameObject.SetActive(true);
+            StartCoroutine(ThreeSeconds());
+        }
+
+        if (SceneManager.GetActiveScene().name == "UIScene")
+        {
+            dimBackground.SetActive(true);
+            animationText.gameObject.SetActive(true);
+            StartCoroutine(ThreeSeconds());
         }
     }
 
@@ -68,7 +86,18 @@ public class UIManager : MonoBehaviour
     public void OnClicked()
     {
         dimBackground.SetActive(true);
-        
     }
 
+    IEnumerator ThreeSeconds()
+    {
+        animationText.text = "3";
+        yield return new WaitForSeconds(1.0f);
+        animationText.text = "2";
+        yield return new WaitForSeconds(1.0f);
+        animationText.text = "1";
+        yield return new WaitForSeconds(1.0f);
+        dimBackground.SetActive(false);
+        animationText.gameObject.SetActive(false);
+        isWaiting = true;
+    }
 }

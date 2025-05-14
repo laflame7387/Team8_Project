@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 8735768952618250206}
   - component: {fileID: 2000508452122842829}
   m_Layer: 5
-  m_Name: JumpGaugeCanvas
+  m_Name: "JumpGaugeCanvas(\uC548\uC500)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
