@@ -15,16 +15,7 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreManager = FindAnyObjectByType<ScoreManager>();
-
-        if (scoreManager != null )
-        {
-            Debug.Log("ScoreManager 찾기 성공");
-        }
-        else
-        {
-            scoreManager = FindAnyObjectByType<ScoreManager>();
-        }
+        scoreManager = ScoreManager.Instance;
     }
 
     // Update is called once per frame
