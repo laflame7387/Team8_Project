@@ -428,7 +428,8 @@ MonoBehaviour:
   m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60b039eabac8d614cbed03ccac087caa, type: 2}
-  m_sharedMaterial: {fileID: -1086067220993584918, guid: 60b039eabac8d614cbed03ccac087caa, type: 2}
+  m_sharedMaterial: {fileID: -1086067220993584918, guid: 60b039eabac8d614cbed03ccac087caa,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1293,7 +1294,8 @@ MonoBehaviour:
   m_text: Game Logo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60b039eabac8d614cbed03ccac087caa, type: 2}
-  m_sharedMaterial: {fileID: -1086067220993584918, guid: 60b039eabac8d614cbed03ccac087caa, type: 2}
+  m_sharedMaterial: {fileID: -1086067220993584918, guid: 60b039eabac8d614cbed03ccac087caa,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1425,7 +1427,8 @@ Animator:
   m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1352959853 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+    type: 3}
   m_PrefabInstance: {fileID: 1553323311}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1360999635
@@ -1601,54 +1604,71 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1915882443}
     m_Modifications:
-    - target: {fileID: 8588665294224929049, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665294224929049, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8588665295161878915, guid: 7f6b932fbdf1dc943848b6f98049ed9d, type: 3}
+    - target: {fileID: 8588665295161878915, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
       propertyPath: m_Name
       value: Hisa Character
       objectReference: {fileID: 0}
+    - target: {fileID: 8588665295161878925, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 17594c3c49cfd3445920876993e1a7df, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1924,7 +1944,8 @@ MonoBehaviour:
   m_text: GoMain
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60b039eabac8d614cbed03ccac087caa, type: 2}
-  m_sharedMaterial: {fileID: -1086067220993584918, guid: 60b039eabac8d614cbed03ccac087caa, type: 2}
+  m_sharedMaterial: {fileID: -1086067220993584918, guid: 60b039eabac8d614cbed03ccac087caa,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
