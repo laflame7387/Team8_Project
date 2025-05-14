@@ -472,17 +472,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff9ddcfab4c112c47b405f55c3c1a59e, type: 3}
---- !u!114 &345106696 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 236629483609649558, guid: ff9ddcfab4c112c47b405f55c3c1a59e, type: 3}
-  m_PrefabInstance: {fileID: 345106695}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &458078332
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +483,7 @@ GameObject:
   - component: {fileID: 458078333}
   - component: {fileID: 458078334}
   m_Layer: 0
-  m_Name: Square
+  m_Name: JumpGauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,7 +499,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.9999999, z: 1}
+  m_LocalScale: {x: 1, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 513437220}
@@ -578,7 +567,7 @@ GameObject:
   - component: {fileID: 513437220}
   - component: {fileID: 513437221}
   m_Layer: 0
-  m_Name: Jump
+  m_Name: JumpGaugeBackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,9 +581,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513437219}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1500001, y: 2.18, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 0.79999995, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 458078333}
@@ -808,7 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b880fcbff766f74286a0b110c67bde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillTransform: {fileID: 345106696}
+  fillTransform: {fileID: 458078333}
   maxFillWidth: 1
   maxHoldTime: 1
 --- !u!1001 &632462465
@@ -1027,6 +1016,10 @@ PrefabInstance:
     - target: {fileID: 3028770192876189989, guid: 99dc40b2086fbaa43baf16fcb2f83300, type: 3}
       propertyPath: m_Name
       value: PauseBoard
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028770192876189989, guid: 99dc40b2086fbaa43baf16fcb2f83300, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

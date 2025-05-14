@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class JumpController : MonoBehaviour
 {
-    [SerializeField] private Image fillTransform; // 바 채우는 부분
+    [SerializeField] private Transform fillTransform; // 바 채우는 부분
     [SerializeField] private float maxFillWidth = 1f; // 바 최대 길이
     [SerializeField] private float maxHoldTime = 1f;  // 최대 점프 충전 시간
 
@@ -33,7 +33,7 @@ public class JumpController : MonoBehaviour
     private void UpdateBarVisual()
     {
         float ratio = holdTime / maxHoldTime;
-        //fillTransform.localScale = new Vector3(ratio * maxFillWidth, 1f, 1f);
-        fillTransform.fillAmount = ratio;
+        fillTransform.localScale = new Vector3(ratio * maxFillWidth, 1f, 1f);
+        //fillTransform.fillAmount = ratio;
     }
 }
