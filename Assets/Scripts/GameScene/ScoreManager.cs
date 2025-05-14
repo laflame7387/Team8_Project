@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     public int CurrentScore { get; private set; } = 0;
+    public int HighScore { get; private set; } = 0;
 
     private void Awake()
     {
@@ -30,5 +31,20 @@ public class ScoreManager : MonoBehaviour
     public void ResetScore()
     {
         CurrentScore = 0;
+    }
+
+    //최고기록 변경 메서드
+    public bool HiScoreChange()
+    {
+        if(HighScore < CurrentScore)
+        {
+            HighScore = CurrentScore;
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 }

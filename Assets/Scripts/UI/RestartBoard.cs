@@ -6,6 +6,8 @@ public class RestartBoard : MonoBehaviour
     public PlayerController player;
     public GameObject restartUI;
     public GameObject scoreBoard;
+    public GameObject hpUI;
+    public GameObject highScoreUI;
 
     private bool isProcessingDeath = false;
 
@@ -32,8 +34,21 @@ public class RestartBoard : MonoBehaviour
         isProcessingDeath = true;
         yield return new WaitForSeconds(1f);
         scoreBoard.SetActive(false);
+        hpUI.SetActive(false);
         restartUI.SetActive(true);
 
-        Time.timeScale = 0f;
+        //highScore 갱신시에만 신기록 UI 표시
+        {
+            if (ScoreManager.Instance.HiScoreChange() == true)
+            {
+                highScoreUI.SetActive(true);
+            }
+
+            else
+            {
+                highScoreUI.SetActive(false);
+            }
+        }
+            Time.timeScale = 0f;
     }
 }
