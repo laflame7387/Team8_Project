@@ -12,9 +12,8 @@ interface IButton
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
-
-    private int three = 3;
-
+    public bool isWaiting = false;
+    
     [SerializeField] private TextMeshProUGUI animationText;
     [SerializeField] private GameObject dimBackground;
     //[SerializeField] private GameObject closeButton;
@@ -99,5 +98,6 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         dimBackground.SetActive(false);
         animationText.gameObject.SetActive(false);
+        isWaiting = true;
     }
 }
