@@ -13,7 +13,6 @@ public class WarpZone : MonoBehaviour
         if(WarpZoneEnter && Input.GetKey(KeyCode.F))
         {
             WarpZoneEnter = true;
-            PressKeyUI.SetActive(false);
             WarpUI.SetActive(true);
         }
     }
