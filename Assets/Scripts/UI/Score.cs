@@ -15,7 +15,8 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreManager = FindAnyObjectByType<ScoreManager>();
+
     }
 
     // Update is called once per frame

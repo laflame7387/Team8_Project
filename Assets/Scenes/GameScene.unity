@@ -1035,6 +1035,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpGaugeBackGround
       objectReference: {fileID: 0}
+    - target: {fileID: 463864134332928625, guid: 1a8d4a58e764e0b48a92a2e270d5f6b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6788827961955508944, guid: 1a8d4a58e764e0b48a92a2e270d5f6b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
