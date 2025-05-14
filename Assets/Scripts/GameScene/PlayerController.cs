@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public bool Grounded => IsGrounded;
     public bool Damaged => IsDamaged;
     public bool Die => IsDie;
+    public bool isWaiting = false;
 
     public GameObject JumpGauge;
 
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (IsDie) return;
+        if (isWaiting == false) return;
 
         UpdateAnimatorParameters();
 
