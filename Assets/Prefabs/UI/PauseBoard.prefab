@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 6527454393294865225}
   - component: {fileID: 8147689988930844536}
   m_Layer: 5
-  m_Name: PuaseBoard
+  m_Name: PauseBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

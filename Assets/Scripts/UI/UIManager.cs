@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject closeButton;
     [SerializeField] private GameObject dimBackground;
 
-
     private Transform prevButtonPosition;
 
     //UIManager ΩÃ±€≈Ê»≠
