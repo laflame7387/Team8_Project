@@ -20,8 +20,6 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("GameScene");
         Time.timeScale = 1.0f;
         ScoreManager.Instance.ResetScore();
-        UIManager.instance.isWaiting = true;
-        UIManager.Instance.WaitThreeSeconds();
     }
     public void ExitGame()
     {
@@ -33,8 +31,6 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("UIScene");
         Time.timeScale = 1.0f;
         ScoreManager.Instance.ResetScore();
-        UIManager.instance.isWaiting = true;
-        UIManager.Instance.WaitThreeSeconds();
     }
 
 }

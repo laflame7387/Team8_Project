@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 interface IButton
 {
@@ -10,9 +11,8 @@ interface IButton
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance { get; private set; }
+    public static UIManager Instance { get; private set; }
 
-    public bool isWaiting = false;
     private int three = 3;
 
     [SerializeField] private TextMeshProUGUI animationText;
@@ -24,9 +24,9 @@ public class UIManager : MonoBehaviour
     //UIManager 싱글톤화
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
 
@@ -37,26 +37,40 @@ public class UIManager : MonoBehaviour
     }
 
     //UIManager 프로퍼티화
-    public static UIManager Instance
-    {
-        get
-        {
-            if(instance == null)
-            {
-                return null;
-            }
-            return instance;
-        }
-    }
-
-    // Start is called before the first frame update
-    //void Start()
+    //public static UIManager instance
     //{
-    //    if (closeButton != null)
+    //    get
     //    {
-    //        prevButtonPosition = closeButton.transform.parent;
+    //        if(instance == null)
+    //        {
+    //            return null;
+    //        }
+    //        return instance;
     //    }
     //}
+
+    void Start()
+    {
+        //if (closeButton != null)
+        //{
+        //    prevButtonPosition = closeButton.transform.parent;
+        //}
+
+        //게임씬 시작시 3초 기다리기
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            dimBackground.SetActive(true);
+            animationText.gameObject.SetActive(true);
+            StartCoroutine(ThreeSeconds());
+        }
+
+        if (SceneManager.GetActiveScene().name == "UIScene")
+        {
+            dimBackground.SetActive(true);
+            animationText.gameObject.SetActive(true);
+            StartCoroutine(ThreeSeconds());
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -75,30 +89,15 @@ public class UIManager : MonoBehaviour
         dimBackground.SetActive(true);
     }
 
-    //3초간 기다리게 하는 메서드
-    public void WaitThreeSeconds()
-    {
-        if (isWaiting == true) 
-        {
-            dimBackground.SetActive(true);
-            StartCoroutine(ThreeSeconds());
-            isWaiting = false;
-        }
-
-        else
-        {
-            return;
-        }
-    }
-
     IEnumerator ThreeSeconds()
     {
-        animationText.text = three.ToString();
+        animationText.text = "3";
         yield return new WaitForSeconds(1.0f);
-        animationText.text = (three - 1).ToString();
+        animationText.text = "2";
         yield return new WaitForSeconds(1.0f);
-        animationText.text = (three - 2).ToString();
+        animationText.text = "1";
         yield return new WaitForSeconds(1.0f);
         dimBackground.SetActive(false);
+        animationText.gameObject.SetActive(false);
     }
 }
