@@ -26,4 +26,9 @@ public class ScoreManager : MonoBehaviour
         CurrentScore += amount;
         Debug.Log($"점수 증가, 현재 점수 : {CurrentScore}");
     }
+
+    public void ResetScore()
+    {
+        CurrentScore = 0;
+    }
 }

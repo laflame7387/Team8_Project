@@ -342,6 +342,14 @@ PrefabInstance:
       propertyPath: restartUI
       value: 
       objectReference: {fileID: 1081457832}
+    - target: {fileID: 3224537616991447042, guid: 22f687229302cc445a23ac768cb76094, type: 3}
+      propertyPath: scoreBoard
+      value: 
+      objectReference: {fileID: 1567969219}
+    - target: {fileID: 6213342614681913908, guid: 22f687229302cc445a23ac768cb76094, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8564009298938434765, guid: 22f687229302cc445a23ac768cb76094, type: 3}
       propertyPath: scoreManager
       value: 
@@ -827,6 +835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 4168368975916891182, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -943,6 +955,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 563599742}
+--- !u!1 &1567969219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4168368975916891182, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+  m_PrefabInstance: {fileID: 1190981834}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1190129112598224207
 PrefabInstance:
   m_ObjectHideFlags: 0

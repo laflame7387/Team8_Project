@@ -5,6 +5,7 @@ public class RestartBoard : MonoBehaviour
 {
     public PlayerController player;
     public GameObject restartUI;
+    public GameObject scoreBoard;
 
     private bool isProcessingDeath = false;
 
@@ -15,10 +16,10 @@ public class RestartBoard : MonoBehaviour
 
     void Update()
     {
-        if (!isProcessingDeath)
-        {
-            Debug.Log("CheckDeathCondition: " + player.CheckDeathCondition());
-        }
+        //if (!isProcessingDeath)
+        //{
+        //    Debug.Log("CheckDeathCondition: " + player.CheckDeathCondition());
+        //}
 
         if (!isProcessingDeath && player.CheckDeathCondition())
         {
@@ -30,6 +31,7 @@ public class RestartBoard : MonoBehaviour
     {
         isProcessingDeath = true;
         yield return new WaitForSeconds(1f);
+        scoreBoard.SetActive(false);
         restartUI.SetActive(true);
 
         Time.timeScale = 0f;
