@@ -13,3 +13,6 @@ https://assetstore.unity.com/packages/2d/environments/free-pixel-food-113523#pub
 
 // 사운드
 https://assetstore.unity.com/packages/audio/sound-fx/8-bits-elements-16848
+
+//타일맵
+https://assetstore.unity.com/packages/2d/environments/pixel-art-top-down-basic-187605
