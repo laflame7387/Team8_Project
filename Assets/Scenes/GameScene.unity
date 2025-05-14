@@ -748,7 +748,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   hpBarController: {fileID: 1852078437322877268}
-  JumpGauge: {fileID: 1539850118}
+  JumpGauge: {fileID: 513437219}
 --- !u!70 &563599744
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1299,11 +1299,6 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4268697917782973670, guid: 388d087a8e85b774fa6379990a2691d5, type: 3}
   m_PrefabInstance: {fileID: 1347233844}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1539850118 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7955613125873695660, guid: ff9ddcfab4c112c47b405f55c3c1a59e, type: 3}
-  m_PrefabInstance: {fileID: 345106695}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &1539850122 stripped
 RectTransform:
