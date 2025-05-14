@@ -498,7 +498,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
+  m_LocalScale: {x: 1, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 513437220}
@@ -543,7 +543,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300024, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -628,7 +628,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300026, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1088,6 +1088,108 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1190981834
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8083846857257811043}
+    m_Modifications:
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168368975916891182, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+      propertyPath: m_Name
+      value: ScoreBoard
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+--- !u!224 &1190981835 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 723930973173427547, guid: 3f638de971eb9114f8cdaac0df73b641, type: 3}
+  m_PrefabInstance: {fileID: 1190981834}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1250176349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,6 +1603,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3864046440591708798, guid: 79cb07884903ec6428b4c68aeb07c2a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1347233845}
+    - targetCorrespondingSourceObject: {fileID: 3864046440591708798, guid: 79cb07884903ec6428b4c68aeb07c2a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1190981835}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79cb07884903ec6428b4c68aeb07c2a0, type: 3}
 --- !u!224 &8083846857257811043 stripped
