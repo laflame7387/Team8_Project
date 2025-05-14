@@ -9,6 +9,7 @@ public class SceneLoader : MonoBehaviour
     public void GoMain()
     {
         SceneManager.LoadScene("MainScene");
+        Time.timeScale = 1.0f;
     }
     public void GoStart()
     {
@@ -17,6 +18,7 @@ public class SceneLoader : MonoBehaviour
     public void GoGame()
     {
         SceneManager.LoadScene("GameScene");
+        Time.timeScale = 1.0f;
     }
     public void ExitGame()
     {
