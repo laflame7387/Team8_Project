@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public bool Damaged => IsDamaged;
     public bool Die => IsDie;
 
+    public GameObject JumpGauge;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour
                 holdTime = Mathf.Clamp(holdTime, 0f, maxHoldTime);
                 IsJumping = true;
                 IsCrouching = false; // 점프 중에는 크라우치 비활성화
+                JumpGauge.SetActive(true);
             }
             else if (Input.GetKey(KeyCode.X))
             {
@@ -93,6 +96,7 @@ public class PlayerController : MonoBehaviour
                 PerformJump();
                 holdTime = 0f;
                 IsJumping = false;
+                JumpGauge.SetActive(false);
             }
         }
     }
@@ -231,18 +235,18 @@ public class PlayerController : MonoBehaviour
         Debug.Log("플레이어 사망!");
     }
 
-    private bool CheckDeathCondition()
+    public bool CheckDeathCondition()
     {
         // 사망 조건을 확인하는 메서드
-        // 실제 게임 로직에 따라 수정 필요
         if (transform.position.y <= -6f)
         {
-            Debug.Log("Player has fallen to death.");
             return true;
         }
-
-
-        return false;
+        else if (health <= 0)
+        {
+            return true;
+        }
+            return false;
     }
 
     private void UpdateAnimatorParameters()
@@ -255,16 +259,4 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("IsCrouching", IsCrouching);
         }
     }
-
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("SpeedUp"))
-    //    {
-    //        IncreaseSpeed(2f); // 원하는 증가량만큼 설정
-    //        Debug.Log("스피드 트리거 감지! 속도 증가.");
-
-    //        Destroy(other.gameObject);
-    //    }
-
-    //}
 }
