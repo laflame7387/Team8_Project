@@ -23,9 +23,9 @@ public class HighScoreBoard : MonoBehaviour
         //.ToList();
 
         // 순위별로 TMP에 표시 (기록이 없는 등수는 "아직 기록이 없습니다")
-        firstScore.text = scoreList.Count > 0 && scoreList[0].HasValue ? $"{scoreList[0]:N0}점" : "아직 기록이 없습니다";
-        secondScore.text = scoreList.Count > 1 && scoreList[1].HasValue ? $"{scoreList[1]:N0}점" : "아직 기록이 없습니다";
-        thirdScore.text = scoreList.Count > 2 && scoreList[2].HasValue ? $"{scoreList[2]:N0}점" : "아직 기록이 없습니다";
+        firstScore.text = scoreList.Count > 0 && scoreList[0].HasValue ? $"{scoreList[0]:N0}점" : "0점";
+        secondScore.text = scoreList.Count > 1 && scoreList[1].HasValue ? $"{scoreList[1]:N0}점" : "0점";
+        thirdScore.text = scoreList.Count > 2 && scoreList[2].HasValue ? $"{scoreList[2]:N0}점" : "0점";
 
     }
 }
