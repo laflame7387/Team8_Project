@@ -44,7 +44,10 @@ public class BaseController_Main : MonoBehaviour
         direction = direction * 5;
         _rigidbody.velocity = direction;
         
-        if (direction.x !=)
+        if (direction.x != 0)
+        {
+
+        }
         animationHandle.Move(direction);
     }
 
