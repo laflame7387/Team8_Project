@@ -16,7 +16,6 @@ public class Score : MonoBehaviour
     void Start()
     {
         scoreManager = FindAnyObjectByType<ScoreManager>();
-
     }
 
     // Update is called once per frame

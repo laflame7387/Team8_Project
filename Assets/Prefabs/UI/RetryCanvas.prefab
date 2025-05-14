@@ -119,6 +119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   restartUI: {fileID: 0}
+  scoreBoard: {fileID: 0}
+  hpUI: {fileID: 0}
+  highScoreUI: {fileID: 0}
 --- !u!1001 &3424835041561566753
 PrefabInstance:
   m_ObjectHideFlags: 0
