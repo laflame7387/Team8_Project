@@ -10,8 +10,8 @@ public class HpbarController : MonoBehaviour
     private PlayerController playerController;
 
     [SerializeField] private Slider hpBar; // 체력바
-    public float maxHealth = 0f; // 최대 체력
-    public float currentHealth = 0f; // 현재 체력
+    [SerializeField] private float maxHealth = 0f; // 최대 체력
+    [SerializeField] private float currentHealth = 0f; // 현재 체력
 
     private void Start()
     {
