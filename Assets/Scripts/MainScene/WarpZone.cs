@@ -7,18 +7,23 @@ public class WarpZone : MonoBehaviour
     public bool WarpZoneEnter;
     public GameObject PressKeyUI;
     public GameObject WarpUI;
+
+    private void Update()
+    {
+        if(WarpZoneEnter && Input.GetKey(KeyCode.F))
+        {
+            WarpZoneEnter = true;
+            PressKeyUI.SetActive(false);
+            WarpUI.SetActive(true);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
             WarpZoneEnter = true;
             PressKeyUI.SetActive(true);
-            if(Input.GetKey(KeyCode.F))
-            {
-                WarpUI.SetActive(true);
-            }
         }
-        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
