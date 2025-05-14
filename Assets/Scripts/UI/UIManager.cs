@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 interface IButton
@@ -11,11 +12,12 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance { get; private set; }
 
-    public bool isWaiting = true;
+    public bool isWaiting = false;
     private int three = 3;
 
-    [SerializeField] private GameObject closeButton;
+    [SerializeField] private TextMeshProUGUI animationText;
     [SerializeField] private GameObject dimBackground;
+    //[SerializeField] private GameObject closeButton;
 
     private Transform prevButtonPosition;
     
@@ -48,13 +50,13 @@ public class UIManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        if (closeButton != null)
-        {
-            prevButtonPosition = closeButton.transform.parent;
-        }
-    }
+    //void Start()
+    //{
+    //    if (closeButton != null)
+    //    {
+    //        prevButtonPosition = closeButton.transform.parent;
+    //    }
+    //}
 
     // Update is called once per frame
     void Update()
@@ -73,10 +75,12 @@ public class UIManager : MonoBehaviour
         dimBackground.SetActive(true);
     }
 
+    //3초간 기다리게 하는 메서드
     public void WaitThreeSeconds()
     {
         if (isWaiting == true) 
         {
+            dimBackground.SetActive(true);
             StartCoroutine(ThreeSeconds());
             isWaiting = false;
         }
@@ -89,6 +93,12 @@ public class UIManager : MonoBehaviour
 
     IEnumerator ThreeSeconds()
     {
-        yield return new WaitForSeconds(3.0f);
+        animationText.text = three.ToString();
+        yield return new WaitForSeconds(1.0f);
+        animationText.text = (three - 1).ToString();
+        yield return new WaitForSeconds(1.0f);
+        animationText.text = (three - 2).ToString();
+        yield return new WaitForSeconds(1.0f);
+        dimBackground.SetActive(false);
     }
 }
