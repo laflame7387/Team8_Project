@@ -88,6 +88,14 @@ public class UIManager : MonoBehaviour
         dimBackground.SetActive(true);
     }
 
+    private void OneHundredScoreQuestClear()
+    {
+        if (ScoreManager.Instance.CurrentScore >= 100)
+        {
+
+        }
+    }
+
     IEnumerator ThreeSeconds()
     {
         animationText.text = "3";
