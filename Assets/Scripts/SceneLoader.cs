@@ -26,4 +26,11 @@ public class SceneLoader : MonoBehaviour
         Application.Quit();
     }
 
+    public void GoUI()
+    {
+        SceneManager.LoadScene("UIScene");
+        Time.timeScale = 1.0f;
+        ScoreManager.Instance.ResetScore();
+    }
+
 }
