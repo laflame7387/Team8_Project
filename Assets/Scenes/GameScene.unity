@@ -903,7 +903,7 @@ GameObject:
   - component: {fileID: 906649650}
   - component: {fileID: 906649654}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: RetryCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
