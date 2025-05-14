@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerAnimator == null)
             Debug.LogError("Animator is not assigned!");
-    
+
 
         if (capsuleCollider == null)
         {
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (IsDie) return;
 
         UpdateAnimatorParameters();
-        
+
 
         if (!IsDamaged)
         {
@@ -246,7 +246,7 @@ public class PlayerController : MonoBehaviour
         {
             return true;
         }
-            return false;
+        return false;
     }
 
     private void UpdateAnimatorParameters()

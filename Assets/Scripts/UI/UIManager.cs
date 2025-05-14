@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject closeButton;
     [SerializeField] private GameObject dimBackground;
 
-
     private Transform prevButtonPosition;
 
     //UIManager ΩÃ±€≈Ê»≠
@@ -48,8 +47,6 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
         if (closeButton != null)
         {
             prevButtonPosition = closeButton.transform.parent;
