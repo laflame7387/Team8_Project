@@ -8,8 +8,6 @@ public class BaseController_Main : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
 
-    [SerializeField] private SpriteRenderer characterRenderer;
-
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
@@ -29,7 +27,6 @@ public class BaseController_Main : MonoBehaviour
     protected virtual void Update()
     {
         HandleAction();
-        Flip();
     }
 
     protected virtual void FixedUpdate()
@@ -49,11 +46,5 @@ public class BaseController_Main : MonoBehaviour
         animationHandle.Move(direction);
     }
 
-    protected void Flip() //플레이어 방향 전환
-    {
-        if (movementDirection.x != 0)
-        {
-            characterRenderer.flipX = movementDirection.x < 0;
-        }
-    }
+   
 }
