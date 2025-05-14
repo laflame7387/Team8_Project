@@ -19,6 +19,7 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
         Time.timeScale = 1.0f;
+        ScoreManager.Instance.ResetScore();
     }
     public void ExitGame()
     {
