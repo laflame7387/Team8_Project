@@ -19729,6 +19729,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainUICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6644345455193756058, guid: 9240aaa3f52ba974e8b3a60f068eec0c,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644345455193756058, guid: 9240aaa3f52ba974e8b3a60f068eec0c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1263612273, guid: 1eaee135ce037439d925cee5e41ce026,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
