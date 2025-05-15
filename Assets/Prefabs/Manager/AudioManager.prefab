@@ -46,10 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 7546373317729217842}
+  bgmSource: {fileID: 7546373317729217842}
   scoreClip: {fileID: 8300000, guid: 8c57384ed2fd44d679f385c64e5bd975, type: 3}
   healClip: {fileID: 8300000, guid: 51c6962c1c5b345f2bb3eef2489ce619, type: 3}
   speedUpClip: {fileID: 8300000, guid: 41d7262b801c0410c9829ea15a595bc1, type: 3}
   speedDownClip: {fileID: 8300000, guid: c5dff3644d003480281333a68d9e9aee, type: 3}
+  jumpClip: {fileID: 8300000, guid: 39d592abb1ae943778436337fe27c5d6, type: 3}
+  damageClip: {fileID: 8300000, guid: aa2fcafe8628340078c5a01209215a07, type: 3}
+  bgmClip: {fileID: 8300000, guid: a0749a45574d503459758e794f8839b2, type: 3}
 --- !u!82 &7546373317729217842
 AudioSource:
   m_ObjectHideFlags: 0
