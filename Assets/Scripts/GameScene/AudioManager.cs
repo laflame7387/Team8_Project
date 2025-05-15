@@ -1,24 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource bgmSource;
 
     [Header("Effect Soudns")]
-    public AudioClip scoreClip;
-    public AudioClip healClip;
-    public AudioClip speedUpClip;
-    public AudioClip speedDownClip;
+    [SerializeField] private AudioClip scoreClip;
+    [SerializeField] private AudioClip healClip;
+    [SerializeField] private AudioClip speedUpClip;
+    [SerializeField] private AudioClip speedDownClip;
 
-    /* [Header("Player Sounds")]
-    public AudioClip jumpClip;
-    public AudioClip landClip;
-    public AudioClip slidingClip;
-    public AudioClip damageClip; */
+    [Header("Player Sounds")]
+    [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip damageClip;
+
+    [Header("BGM Sounds")]
+    [SerializeField] private AudioClip bgmClip;
 
     private void Awake()
     {
@@ -26,6 +29,11 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            if (SceneManager.GetActiveScene().name == "GameScene")
+            {
+                PlayBGM();
+            }
         }
         else
         {
@@ -37,6 +45,24 @@ public class AudioManager : MonoBehaviour
     {
         if (clip != null)
             sfxSource.PlayOneShot(clip);
+    }
+
+    public void PlayBGM()
+    {
+        if (bgmSource != null && bgmClip != null)
+        {
+            bgmSource.clip = bgmClip;
+            bgmSource.loop = true;
+            bgmSource.Play();
+        }
+    }
+
+    public void StopBGM()
+    {
+        if (bgmSource != null && bgmSource.isPlaying)
+        {
+            bgmSource.Stop();
+        }
     }
 
     public void PlayItemSound(Item.ItemType type)
@@ -58,8 +84,31 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    /* public void PlayJumpSound()
+    public void PlayJumpSound()
     {
-        PlaySFX(jumpClip); // »£√‚¿∫ AudioManager.Instance.PlayJumpSound();
-    } */
+        PlaySFX(jumpClip);
+    }
+
+    public void PlayDamageSound()
+    {
+        PlaySFX(damageClip);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "GameScene")
+        {
+            PlayBGM();
+        }
+    }
 }

@@ -98,10 +98,16 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Z) && IsJumping)
             {
                 PerformJump();
+                AudioManager.Instance.PlayJumpSound();
                 holdTime = 0f;
                 IsJumping = false;
                 JumpGauge.SetActive(false);
             }
+        }
+
+        if (transform.position.y <= -6f && !IsDie)
+        {
+            HandleDeath();
         }
     }
 
@@ -196,6 +202,8 @@ public class PlayerController : MonoBehaviour
 
         playerAnimator.SetBool("IsDamaged", true);
 
+        AudioManager.Instance.PlayDamageSound();
+
         health -= 10;
         //hpBarController?.SetHealth(health);
 
@@ -243,6 +251,8 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("IsDie", true);
         rb.velocity = Vector2.zero;
         Debug.Log("플레이어 사망!");
+
+        AudioManager.Instance.StopBGM();
     }
 
     public bool CheckDeathCondition()
