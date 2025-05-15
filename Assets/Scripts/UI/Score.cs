@@ -9,16 +9,11 @@ public class Score : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] TextMeshProUGUI scoreText;
 
-    //[SerializeField] private int nowScore;
-    
-
-    // Start is called before the first frame update
     void Start()
     {
         scoreManager = ScoreManager.Instance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         scoreText.text = scoreManager.CurrentScore.ToString();

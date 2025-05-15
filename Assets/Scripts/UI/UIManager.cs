@@ -35,19 +35,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //UIManager 프로퍼티화
-    //public static UIManager instance
-    //{
-    //    get
-    //    {
-    //        if(instance == null)
-    //        {
-    //            return null;
-    //        }
-    //        return instance;
-    //    }
-    //}
-
     void Start()
     {
         //if (closeButton != null)

@@ -66,21 +66,4 @@ public class ScoreManager : MonoBehaviour
 
         OnScoreReset?.Invoke(CurrentScore, TotalScore); //점수 리셋되면 알려주기
     }
-
-    //최고기록 변경 메서드
-    //public bool HiScoreChange()
-    //{
-    //    if(HighScore[0] < CurrentScore || HighScore[0] == null)
-    //    { 
-    //        HighScore.Add(CurrentScore);
-    //        return true;
-    //    }
-
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
-
-
 }

@@ -18,11 +18,6 @@ public class RestartBoard : MonoBehaviour
 
     void Update()
     {
-        //if (!isProcessingDeath)
-        //{
-        //    Debug.Log("CheckDeathCondition: " + player.CheckDeathCondition());
-        //}
-
         if (!isProcessingDeath && player.CheckDeathCondition())
         {
             StartCoroutine(HandleDeathDelay());
