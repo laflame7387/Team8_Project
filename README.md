@@ -79,8 +79,11 @@ https://assetstore.unity.com/packages/2d/gui/icons/2d-casual-ui-hd-82080?srsltid
 // 아이템
 https://assetstore.unity.com/packages/2d/environments/free-pixel-food-113523#publisher 
 
-// 사운드
+// 효과음
 https://assetstore.unity.com/packages/audio/sound-fx/8-bits-elements-16848
+
+// BGM
+https://assetstore.unity.com/packages/audio/music/visual-love-bgm-all-in-one-pack-318268
 
 //타일맵
 https://assetstore.unity.com/packages/2d/environments/pixel-art-top-down-basic-187605
