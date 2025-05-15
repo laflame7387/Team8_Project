@@ -35,19 +35,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //UIManager 프로퍼티화
-    //public static UIManager instance
-    //{
-    //    get
-    //    {
-    //        if(instance == null)
-    //        {
-    //            return null;
-    //        }
-    //        return instance;
-    //    }
-    //}
-
     void Start()
     {
         //if (closeButton != null)
@@ -86,6 +73,14 @@ public class UIManager : MonoBehaviour
     public void OnClicked()
     {
         dimBackground.SetActive(true);
+    }
+
+    private void OneHundredScoreQuestClear()
+    {
+        if (ScoreManager.Instance.CurrentScore >= 100)
+        {
+
+        }
     }
 
     IEnumerator ThreeSeconds()

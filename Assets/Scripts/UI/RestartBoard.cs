@@ -18,11 +18,6 @@ public class RestartBoard : MonoBehaviour
 
     void Update()
     {
-        //if (!isProcessingDeath)
-        //{
-        //    Debug.Log("CheckDeathCondition: " + player.CheckDeathCondition());
-        //}
-
         if (!isProcessingDeath && player.CheckDeathCondition())
         {
             StartCoroutine(HandleDeathDelay());
@@ -38,17 +33,17 @@ public class RestartBoard : MonoBehaviour
         restartUI.SetActive(true);
 
         //highScore 갱신시에만 신기록 UI 표시
-        {
-            if (ScoreManager.Instance.HiScoreChange() == true)
-            {
-                highScoreUI.SetActive(true);
-            }
+        //{
+        //    if (ScoreManager.Instance.HiScoreChange() == true)
+        //    {
+        //        highScoreUI.SetActive(true);
+        //    }
 
-            else
-            {
-                highScoreUI.SetActive(false);
-            }
-        }
-            Time.timeScale = 0f;
+        //    else
+        //    {
+        //        highScoreUI.SetActive(false);
+        //    }
+        //}
+        Time.timeScale = 0f;
     }
 }
