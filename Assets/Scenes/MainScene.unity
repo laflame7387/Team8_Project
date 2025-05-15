@@ -21857,8 +21857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d0e62721e731a47916713e45e4ef50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2087540820}
-  lerpSpeed: 100
+  target: {fileID: 1304145017}
+  lerpSpeed: 1
 --- !u!4 &1304145017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8588665295161878914, guid: 7f6b932fbdf1dc943848b6f98049ed9d,
