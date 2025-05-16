@@ -399,6 +399,11 @@ PrefabInstance:
       propertyPath: scoreBoard
       value: 
       objectReference: {fileID: 22132757}
+    - target: {fileID: 5770870630313913899, guid: 22f687229302cc445a23ac768cb76094,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoMain
+      objectReference: {fileID: 0}
     - target: {fileID: 8564009298938434765, guid: 22f687229302cc445a23ac768cb76094,
         type: 3}
       propertyPath: scoreManager
